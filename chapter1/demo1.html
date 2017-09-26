@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  <!--使用对象直接量标记法来创建一个对象-->
+//  对象中的嵌套函数其上下文环境是全局的Windows对象，而非包含他的那个对象
+  var apatment = {
+    isLocked :false,
+    lock:function () {
+      var that = this;
+      this.isLocked  = true;
+      function dosomething() {
+//        alert(this === apatment);
+//        alert(this ===window);
+//        alert(that === apatment);
+        that.isLocked = false;
+      }
+//      dosomething();
+    }
+  };
+//  apatment.lock();
+//  alert(apatment.isLocked);
+//  在new 关键字创建对象时，this指向的是通过构造函数所创建那个对象实例
+  function Accomodation() {
+    this.floor = 0;
+    this.rooms = 0;
+    this.sharedEntrance = false;
+    this.isLocked = false;
+    this.lock = function () {
+//      函数的this一般指向函数的那个对象，本事列中this指向的是创建的对象是咧
+//      因为这个函数是通过被创建的对象实例来调用的
+      this.isLocked = true;
+    };
+    this.unlock = function () {
+      this.isLocked = false;
+    };
+  }
+   var house = new Accomodation();
+   var apptment = new Accomodation();
+  house.floor = 2;
+  apatment.lock();
+//  alert(apptment.floor);
+//  alert(apatment.isLocked);
+//组合使用构造汗描述使用this和prototype关键字来编写高线的构造函数
+  function Adation(floos,rooms,sharedEntrance) {
+    this.floors = floos||0;
+    this.rooms = rooms||0;
+    this.sharedEntrance = sharedEntrance||false;
+  }
+  //不需要
+  Adation.prototype.lsLocked = false;
+  Adation.prototype.lock = function () {
+    this.isLocked = true;
+  };
+  Adation.prototype.unlock = function () {
+    this.isLocked = false;
+  };
+  var ada = new Adation();
+  alert(ada.isLocked)
+
+</script>
+</body>
+</html>

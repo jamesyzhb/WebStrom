@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //定义一个名为ACcommodation的构造函数
+  function Accomodtion() {}
+  //通过对象直接量为这个‘类’添加属性和方法
+  Accomodtion.prototype = {
+    floors : 0,
+    room:0,
+    sharedEntrance:false,
+    lock:function () {},
+    unlock:function () {}
+  };
+  //创建Accomodtion’类'的对象实例
+  var house = new Accomodtion();
+  var apartment = new  Accomodtion();
+
+  //将对象实例的属性设置为正确值
+  house.floors = 2;
+  Accommodtion.sharedEntrance = true;
+  //调用对象实例的方法
+  house.unlock();
+  apartment.lock();
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function Accommodtion(defaults) {
+    defaults = defaults ||{ };
+    this.floors = defaults.floors;
+    this.shared = defaults.share || false;
+  }
+  Accommodtion.prototype.isLocked =false;
+  Accommodtion.prototype.lock = function () {
+    //这里的this指向调用这个函数的那个对象实例
+    this.isLocked = true;
+  };
+  Accommodtion.prototype.unlock = function () {
+    this.isLocked = false ;
+  };
+var hiuse = new Accommodtion({
+  floors:2,
+  share :3
+});
+  alert("我在实例中"+hiuse.hasOwnProperty('isLocked'));
+  hiuse.lock();
+  alert("函数执行完了，hiuse的isLocked属性"+hiuse.isLocked);
+  alert(hiuse.hasOwnProperty('isLocked'))
+
+</script>
+</body>
+</html>

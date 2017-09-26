@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function Accomomodation(floors, rooms, sharedEntrance) {
+    this.floors = floors;
+    this.rooms = rooms;
+    this.sharedEntrance = sharedEntrance;
+  }
+  //构造函数的prototype指向的是这个Accomomodation对象
+  //实例中的所有属性，方法都来自这个对象
+  Accomomodation.prototype.isLocked = false; //原型属性
+  Accomomodation.prototype.lock = function () {
+    this.isLocked = true; //函数执行后会新建实例的isLocked属性并赋值。并覆盖掉原有的同名属性
+  };
+  Accomomodation.prototype.unlock = function () {
+    this.isLocked = false;//设置实例属性
+  };
+  var  house = new Accomomodation(2,7);
+  //使用new的构造函数this指向的是实例
+  var otherhouse = new Accomomodation(5,6);
+
+  alert(house.hasOwnProperty('isLocked'));//false
+  house.lock();//这个函数修改的是house实例的新建属性isLocked 而不是原型中的
+  Accomomodation.prototype.isLocked = false;
+  //两个实例来自同一个构造函数，同一个原型。
+  alert(house.isLocked); //ture
+  alert(otherhouse.isLocked); //false
+</script>
+</body>
+</html>

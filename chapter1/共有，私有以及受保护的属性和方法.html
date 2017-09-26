@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //我们将‘类’的定义包在一个自我执行的函数里，这个函数返回我们所创建的类并将其保存在一个变量中以方便我们使用
+  var Accomodation= (function () {
+    //定义保存‘类’函数。因为在一个新的函数内部，我们也切换到一个新的作用域，
+    // 所以可以使用与保存函数返回值相同的变量的名字
+    function Accomodation() {}
+      var _isLocked = false,
+        _isAlarmed = false,
+        _alramMessage = "可以调用";
+    //近在当前作用域中定义的函数(未在构造函数)
+    function _alarm() {
+      _isAlarmed  = true;
+      alert(_alramMessage);
+    }
+    function _disableAlarm() {
+      _isAlarmed = false;
+    }
+    //所有定义在原型上的方法都是“公有的”，
+    // 当我们在此处创建的类在闭包结束后被返回，就可以在当前作用域之外的地方访问这些方法
+    Accomodation.prototype.lock =function () {
+      _isLocked = true;
+      _alarm();
+    };
+    Accomodation.prototype.unlock = function () {
+      _isLocked = false;
+      _disableAlarm();
+    };
+    //定义一个geeter函数来将私有变量——isLocked的值进行只读访问-相当于，把变量定义成“受保护”的
+    Accomodation.prototype.getLocked = function () {
+      return _isLocked;
+    };
+    //定义一个setter函数来对西游变量_alramMessage来进行只写访问，相当于将其定义为受保护的
+    Accomodation.prototype.Setmesage =function (mesage) {
+      _alramMessage = mesage ;
+    };
+    //返回这个作用域所创建的类，使之在外层能够访问。只要公有的属性和方法是可以用的
+    return Accomodation;
+  }());
+  var house = new Accomodation();
+  house.lock();
+  console.log(house.getLocked())
+
+</script>
+</body>
+</html>

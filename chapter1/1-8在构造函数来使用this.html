@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //定义一个新的构造函数
+  function Accomodation() {
+            this.floors = 2,
+            this.rooms = 0,
+            this.sharedEntrance = false,
+            this.isLocked = false,
+            this.lock = function () {
+              //函数中的this一般指向包含函数的那个对象，这里的this指向的是创建的对象实例，
+              //因为
+              this.isLocked = true;
+            };
+            this.unlock = function () {
+              this.isLocked = false;
+            }
+            var house = new Accomodtion();
+            var apartment = new Accomodtion();
+            //读取和修改属性值，调用方法等操作都和普通函数一样‘
+            alert(house.floors); //0
+    house.floors = 2 ;
+    apartment.lock();
+  }
+</script>
+</body>
+</html>

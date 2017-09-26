@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //定义一个简单类
+  function Accomo() {
+    this.isLocked= false;
+  }
+  var AlarSystem ={
+    arm : function (message) {
+      this.isLocked =true;
+      alert(message);
+    },
+    disarm:function (message) {
+      this.isLocked  =false;
+      alert(message);
+    }
+  };
+  var myhouse = new Accomo();
+  //通过call,将对象实例上下文传入Arm函数
+  AlarSystem.arm.call(myhouse,'jiji')
+  //arm含糊中的this指向了通过call传入的实例对象，所以MYhouse对象的isAlarmed属性就改变了
+  alert(myhouse.isLocked);
+  AlarSystem.arm.apply(myhouse,['alre deativated']);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //定义一个有两个方法的类
+  function Accomodation() {}
+  Accomodation.prototype.lock = function () {};
+  Accomodation.prototype.unlock = function () {};
+  //定义一个构造函数，他将成为我们的子类
+  function House(defaults) {
+    defaults = defaults||{};
+    //将本类的所有实例的floors都初始化为2
+    this.floors = 2;
+    //如果构造函数的对象直接量参数rooms属性，则使用传进来的值，否则默认设为7个房间
+    this.rooms = defaults.rooms || 7;
+  }
+  //将house'类'的原型设为Accomodation类的一个实例（和构造函数无关）
+  //使用关键字new就可以调用Accommodation的构造函数，这样就能创建并返回一饿包含其所有的属性和方法的对象
+  //这个对象被传递给house类的原型，这样house类就得以继承ccommodation的所有内容
+  House.prototype = new Accomodation();
+  //对象实例的constructor属性指向创建对象的构造函数，然后House继承了ACCommdtion的内容，
+  // constructor内容也被复制，所以我们需要重新设置constructor的值
+  //如果没有这个值，说明通过House’类‘创建的对象会报告说是Accomodation”类“创建的
+  House.prototype.constructor = House;
+  //创建一个实例
+  var myhouse  = new House();
+  //传入一个rooms值，从而在对象实例化的时候进行赋值
+  var myNeighborHouse =new  House({rooms : 8});
+  alert(myhouse.rooms); //默认值 7
+  alert(myNeighborHouse.rooms); //赋值 8
+  alert(myhouse.constructor === House);
+  aleert(myhouse.constructor === Accomodation);
+
+
+</script>
+</body>
+</html>

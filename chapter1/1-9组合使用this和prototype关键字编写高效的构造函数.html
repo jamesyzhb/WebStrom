@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //通过一个构造函数来表示各种类型的住宅
+  function Accomodtion() {
+    //利用this关键字来设置实例对象的属性
+    this.floors = 0,
+    this.islocked = false;
+  }
+  //利用原型定义的方法可以通过this关键词访问在构造函数中定义的属性
+  Accomodtion.prototype.lock = function() {
+    this.islocked = true;
+  };
+  Accomodtion.prototype.unlock = function () {
+    this.islocked = false;
+  };
+  //实例化一个Accomodtion类型的对象
+  var house  = new Accomodtion();
+  //执行lockf方法
+  house.lock();
+  //检查"islocked"属性是否设置正确
+  alert(house.islocked);//true
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //将this关键字的值保存在变量中
+  var apartent = {
+    isLocked : false,
+    lock:function () {
+      var that = this;
+      //设置isLocked的属性
+      this.isLocked = true;
+      //此处的嵌套函数，可以用匿名函数，也可以不用
+      function doSomething() {
+        alert(this === apartent) ; //false
+        alert(this === window) ; //true
+        alert(that === apartent);//true
+        that.isLocked = false;
+      }
+      doSomething()
+    }
+  };
+  apartent.lock();
+  alert(apartent.isLocked);//false
+</script>
+</body>
+</html>
